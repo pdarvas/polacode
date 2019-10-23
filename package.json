@@ -2,7 +2,7 @@
   "name": "polacode-copy-mac",
   "displayName": "Polacode Copy Mac",
   "description": "📸  Polaroid for your code - forked to put the file on clipboard (only works on MacOS)",
-  "version": "0.3.4",
+  "version": "0.3.5",
   "repository": {
     "type": "git",
     "url": "https://github.com/pdarvas/polacode.git"
