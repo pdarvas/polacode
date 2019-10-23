@@ -1,13 +1,13 @@
 {
-  "name": "polacode",
-  "displayName": "Polacode",
-  "description": "📸  Polaroid for your code",
+  "name": "polacode-copy-mac",
+  "displayName": "Polacode Copy Mac",
+  "description": "📸  Polaroid for your code - forked to put the file on clipboard (only works on MacOS)",
   "version": "0.3.4",
   "repository": {
     "type": "git",
-    "url": "https://github.com/octref/polacode.git"
+    "url": "https://github.com/pdarvas/polacode.git"
   },
-  "publisher": "pnp",
+  "publisher": "pdarvas",
   "keywords": [
     "polacode",
     "polaroid",
@@ -35,7 +35,7 @@
     "commands": [
       {
         "command": "polacode.activate",
-        "title": "Polacode 📸"
+        "title": "Polacode"
       }
     ],
     "configuration": {

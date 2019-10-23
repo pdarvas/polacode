@@ -6,6 +6,16 @@ const { homedir } = require('os')
 const writeSerializedBlobToFile = (serializeBlob, fileName) => {
   const bytes = new Uint8Array(serializeBlob.split(','))
   fs.writeFileSync(fileName, Buffer.from(bytes))
+  fileToClipboard(fileName)
+}
+
+function fileToClipboard(fileName) {
+  const proc = require('child_process')
+  proc.exec(`osascript \
+  -e 'on run args' \
+  -e 'set the clipboard to POSIX file "${fileName}"' \
+  -e end \
+  "$@"`)
 }
 
 const P_TITLE = 'Polacode 📸'
@@ -72,19 +82,13 @@ function activate(context) {
     panel.webview.onDidReceiveMessage(({ type, data }) => {
       switch (type) {
         case 'shoot':
-          vscode.window
-            .showSaveDialog({
-              defaultUri: lastUsedImageUri,
-              filters: {
-                Images: ['png']
-              }
-            })
-            .then(uri => {
-              if (uri) {
-                writeSerializedBlobToFile(data.serializedBlob, uri.fsPath)
-                lastUsedImageUri = uri
-              }
-            })
+          const filePath = `/tmp/${Date.now()}.png`
+          try {
+            writeSerializedBlobToFile(data.serializedBlob, filePath)
+            vscode.window.showInformationMessage('Image in clipboard successfully')
+          } catch (e) {
+            vscode.window.showErrorMessage(e.message)
+          }
           break
         case 'getAndUpdateCacheAndSettings':
           panel.webview.postMessage({

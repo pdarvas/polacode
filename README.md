@@ -1,3 +1,7 @@
+# FORK
+Instead of saving to a file, it now copies the image to the clipboard. **Only works in MacOS**.
+
+# Original
 <p>
   <h2 align="center">Polacode — Polaroid for your code 📸</h2>
 </p>
